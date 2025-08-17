@@ -1,39 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import ProductCard from './components/ProductCard';
 
-function App() {
-  const [count, setCount] = useState(0)
+const products = [
+  {
+    image: 'shoes.avif',
+    name: 'Running Shoes',
+    price: 59.99,
+    description: 'Comfortable running s hoes for daily use.',
+  },
+  {
+    image: 'backpack.jpg    ',
+    name: 'Travel Backpack',
+    price: 39.99,
+    description: 'Durable backpack suitable for long trips.',
+  },
+  {
+    image: 'headphones.jfif',
+    name: 'Wireless Headphones',
+    price: 89.99,
+    description: 'Noise-cancelling headphones with Bluetooth support.',
+  },
+ 
+];
 
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-  <img src={viteLogo} className="logo" alt="Vite logo" />
-</a>
-...
-<h1>Vite + React</h1>
-<button>...</button>
-
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div style={styles.container}>
+      <h1 style={{ textAlign: 'center' }}>Product List</h1>
+      <div style={styles.grid}>
+        {products.map((product, index) => (
+          <ProductCard
+            key={index}
+            image={product.image}
+            name={product.name}
+            price={product.price}
+            description={product.description}
+          />
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default App
+const styles = {
+  container: {
+    padding: '40px',
+    fontFamily: 'Arial, sans-serif',
+    backgroundColor: '#f9f9f9',
+    minHeight: '100vh',
+  },
+  grid: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: '20px',
+  },
+};
+
+export default App;
